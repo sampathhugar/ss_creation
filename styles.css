@@ -1297,7 +1297,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -1310,11 +1310,16 @@ h1, h2, h3, h4, h5, h6 {
     transition: var(--transition-smooth);
 }
 
-/* Specific overrides for square/icon logos to boost their visual size */
+/* Specific overrides for square/icon logos to boost their visual size.
+   Explicit height (not just max-height) forces small source images to scale UP. */
 .partner-img[src*="guhantara"],
-.partner-img[src*="shilhaandara"] {
-    max-width: 90%;
-    max-height: 145px;
+.partner-img[src*="shilhaandara"],
+.partner-img[src*="rrretreat"],
+.partner-img[src*="clubcabana"] {
+    height: 120px;
+    max-height: none;
+    width: auto;
+    max-width: 95%;
 }
 
 /* Specific overrides for wide banner-style logos to prevent them from looking too massive */
@@ -2059,9 +2064,13 @@ h1, h2, h3, h4, h5, h6 {
         max-height: 100px;
     }
     .partner-img[src*="guhantara"],
-    .partner-img[src*="shilhaandara"] {
-        max-width: 90%;
-        max-height: 130px;
+    .partner-img[src*="shilhaandara"],
+    .partner-img[src*="rrretreat"],
+    .partner-img[src*="clubcabana"] {
+        height: 105px;
+        max-height: none;
+        width: auto;
+        max-width: 95%;
     }
     .partner-img[src*="sky-blueorchides"],
     .partner-img[src*="wonderla"] {
@@ -2089,7 +2098,8 @@ h1, h2, h3, h4, h5, h6 {
     .hero-section {
         padding-top: 5.5rem;
         padding-bottom: 4rem;
-        min-height: auto;
+        min-height: 100vh;        /* fallback */
+        min-height: 100svh;       /* fills the screen, accounting for mobile browser UI */
     }
     .hero-bg {
         background-attachment: scroll; /* fix iOS scroll jank */
@@ -2231,9 +2241,13 @@ h1, h2, h3, h4, h5, h6 {
         max-height: 85px;
     }
     .partner-img[src*="guhantara"],
-    .partner-img[src*="shilhaandara"] {
-        max-width: 85%;
-        max-height: 110px;
+    .partner-img[src*="shilhaandara"],
+    .partner-img[src*="rrretreat"],
+    .partner-img[src*="clubcabana"] {
+        height: 90px;
+        max-height: none;
+        width: auto;
+        max-width: 90%;
     }
     .partner-img[src*="sky-blueorchides"],
     .partner-img[src*="wonderla"] {

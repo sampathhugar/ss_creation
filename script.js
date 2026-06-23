@@ -109,8 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const formSuccess = document.getElementById('form-success');
     const closeSuccess = document.getElementById('close-success');
 
+    const submitButton = document.getElementById('btn-submit');
+
     if (enquiryForm) {
-        enquiryForm.addEventListener('submit', (e) => {
+        enquiryForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             // Simple validation check (HTML5 handles most of it)
@@ -124,15 +126,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Log form data to console for testing/debugging
+            // Collect all form fields into a plain object
             const formData = new FormData(enquiryForm);
-            console.log('Enquiry Form Submitted:');
+            const data = {};
             for (let [key, value] of formData.entries()) {
-                console.log(`${key}: ${value}`);
+                data[key] = value;
+            }
+            // Add a timestamp so the sheet records when it was submitted
+            data.timestamp = new Date().toLocaleString();
+
+            // Disable the button & show a sending state to prevent double submits
+            const originalBtnHtml = submitButton ? submitButton.innerHTML : '';
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             }
 
-            // Trigger success overlay animation
-            formSuccess.classList.add('active');
+            try {
+                // Save the enquiry to the Google Sheet (see google-sheet.js)
+                await saveEnquiryToGoogleSheet(data);
+
+                // Trigger success overlay animation
+                formSuccess.classList.add('active');
+            } catch (err) {
+                console.error('Failed to save enquiry to Google Sheet:', err);
+                alert('Sorry, something went wrong while submitting your enquiry. Please try again or contact us directly.');
+            } finally {
+                // Restore the button
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalBtnHtml;
+                }
+            }
         });
     }
 
