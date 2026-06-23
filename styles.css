@@ -1297,7 +1297,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    /* Extra top padding reserves space for the corner badge so logos don't sit behind it */
+    padding: 2rem 1rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -2057,7 +2058,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     .partner-image-wrapper {
         height: 160px;
-        padding: 1.25rem;
+        padding: 2rem 1.25rem 1.25rem;
     }
     .partner-img {
         max-width: 80%;
@@ -2067,7 +2068,7 @@ h1, h2, h3, h4, h5, h6 {
     .partner-img[src*="shilhaandara"],
     .partner-img[src*="rrretreat"],
     .partner-img[src*="clubcabana"] {
-        height: 105px;
+        height: 96px;
         max-height: none;
         width: auto;
         max-width: 95%;
@@ -2234,7 +2235,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     .partner-image-wrapper {
         height: 140px;
-        padding: 1rem;
+        padding: 1.9rem 1rem 1rem;
     }
     .partner-img {
         max-width: 75%;
@@ -2244,7 +2245,7 @@ h1, h2, h3, h4, h5, h6 {
     .partner-img[src*="shilhaandara"],
     .partner-img[src*="rrretreat"],
     .partner-img[src*="clubcabana"] {
-        height: 90px;
+        height: 82px;
         max-height: none;
         width: auto;
         max-width: 90%;
